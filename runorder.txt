@@ -1,0 +1,5 @@
+install kubectl
+install helm
+docker-images
+docker-secret
+cre-deployment-captureorderweb.sh

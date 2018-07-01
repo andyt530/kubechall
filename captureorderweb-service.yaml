@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: captureorder-svc
+  labels:
+    app: captureorder
+spec:
+  selector:
+    app: captureorder
+    tier: web
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: LoadBalancer
