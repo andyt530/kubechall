@@ -16,9 +16,9 @@ spec:
         image: atacr.azurecr.io/captureorderack
         env:
         - name: MONGOHOST
-          value: "mongodb://my-release-mongodb"
+          value: "mongodb://mongo2-mongodb"
         - name: RABBITMQHOST
-          value: "amqp://admin:secretpassword@team2rabbit-rabbitmq:5672"
+          value: "amqp://admin:secretpassword@rabbit2-rabbitmq:5672"
         - name: TEAMNAME
           value: "Team2LDS0318"
         - name: PARTITIONKEY
@@ -32,3 +32,4 @@ spec:
             cpu: "500m"
       imagePullSecrets:
         - name: acrsecret
+    

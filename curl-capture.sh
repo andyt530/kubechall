@@ -1,0 +1,4 @@
+IP=`kubectl get svc captureorder-svc | grep captureorder-svc | awk '{print $4}'`
+curl -X POST "http://40.113.151.14/v1/order/" -H  "accept: application/json" -H  "content-type: application/json" -d "{  \"EmailAddress\": \"t1@me.com\",  \"ID\": \"1\",  \"PreferredLanguage\": \"eng\",  \"Product\": \"bike2\",  \"Source\": \"Halfords\"  ,  \"Status\": \"ordered\",  \"Total\": 2}" 
+curl -X POST "http://$IP/v1/order/" -H  "accept: application/json" -H  "content-type: application/json" -d "{  \"EmailAddress\": \"t1@me.com\",  \"ID\": \"1\",  \"PreferredLanguage\": \"eng\",  \"Product\": \"bike2\",  \"Source\": \"Halfords\"  ,  \"Status\": \"ordered\",  \"Total\": 2}" 
+curl -X POST "http://40.113.151.14/v1/order/" -H  "accept: application/json" -H  "content-type: application/json" -d "{  \"EmailAddress\": \"string\",  \"ID\": \"string\",  \"PreferredLanguage\": \"string\",  \"Product\": \"string\",  \"Source\": \"string\",  \"Status\": \"string\",  \"Total\": 0}"
