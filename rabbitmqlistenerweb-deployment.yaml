@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: rabbitmqlistener-deployment
+  labels:
+    app: rabbitmqlistener
+spec:
+  template:
+    metadata:
+      labels:
+        app: rabbitmqlistener
+    spec:
+      containers:
+      - name: rabbitmqlistener-pod
+        image: atacr.azurecr.io/rabbitmqlistenerack
+        env:
+        - name: PROCESSENDPOINT
+          value: "http://fulfillorder:8080/v1/order"
+        - name: RABBITMQHOST
+          value: "amqp://admin:secretpassword@rabbit2-rabbitmq:5672"
+        - name: TEAMNAME
+          value: "Team2"
+        - name: PARTITIONKEY
+          value: ""
+      imagePullSecrets:
+        - name: acrsecret
