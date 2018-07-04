@@ -1,0 +1,32 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: fulfillorder-deployment
+  labels:
+    app: fulfillorder
+spec:
+  template:
+    metadata:
+      labels:
+        app: fulfillorder
+        tier: web
+    spec:
+      containers:
+      - name: fulfillorder-pod
+        image: atacr.azurecr.io/fulfillorderack 
+        env:
+        - name: MONGOHOST
+          value: "mongodb://atk8s:C1M1tKlCYZjYIDuZtKtoisK78Wwb6QbRBevthIfWBaIZaSZABXbrfGoFtOEgJXNlEuHmClq7QCszZ8RzY0IzMg==@atk8s.documents.azure.com:10255/?ssl=true&replicaSet=globaldb"
+        - name: TEAMNAME
+          value: "Team2-LDS0318"
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: "/orders"
+          name: volume1
+      volumes:
+        - name: volume1
+          persistentVolumeClaim:
+            claimName: azurefile
+      imagePullSecrets:
+        - name: acrsecret

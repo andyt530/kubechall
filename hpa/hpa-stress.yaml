@@ -1,0 +1,14 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: cpu-demo
+  namespace: cpu-example
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1beta1
+    kind: Deployment
+    name: cpu-demo
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 25
+

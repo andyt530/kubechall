@@ -1,0 +1,35 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: captureorderweb
+  labels:
+    app: captureorder
+spec:
+  template:
+    metadata:
+      labels:
+        app: captureorder
+        tier: web
+    spec:
+      containers:
+      - name: captureorder-app
+        image: atacr.azurecr.io/captureorderack
+        env:
+        - name: MONGOHOST
+          value: "mongodb://atk8s:C1M1tKlCYZjYIDuZtKtoisK78Wwb6QbRBevthIfWBaIZaSZABXbrfGoFtOEgJXNlEuHmClq7QCszZ8RzY0IzMg==@atk8s.documents.azure.com:10255/?ssl=true&replicaSet=globaldb"
+        - name: RABBITMQHOST
+          value: "amqp://admin:secretpassword@rabbit2-rabbitmq:5672"
+        - name: TEAMNAME
+          value: "Team2LDS0318"
+        - name: PARTITIONKEY
+          value: ""
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "250m"
+          limits:
+            cpu: "500m"
+      imagePullSecrets:
+        - name: acrsecret
+    

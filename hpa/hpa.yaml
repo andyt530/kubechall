@@ -1,0 +1,14 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: captureorderweb
+  namespace: default
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1beta1
+    kind: Deployment
+    name: captureorderweb
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 25
+
